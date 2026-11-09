@@ -170,7 +170,7 @@
   const monthsSince = monthIndex(today.getFullYear(), today.getMonth()) - monthIndex(2017, 0);
   const duration = formatDuration(monthsSince, false);
   document.getElementById('career-years').textContent = formatDuration(monthsSince, true);
-  document.getElementById('career-inline').textContent = 'a career spanning ' + duration;
+  document.getElementById('career-inline').textContent = duration;
   document.getElementById('career-asof').textContent =
     'As of ' + today.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}) +
     ' · resume dates recorded by month';
