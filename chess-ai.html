@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="An independent chess AI research project by Sameer Bharadwaj Kencham: model training, a custom chess transformer, Stockfish supervision, PUCT search, and controlled GPU benchmarks.">
+  <meta property="og:title" content="Chess AI Research | Sameer Kencham">
+  <meta property="og:description" content="From QLoRA prototypes to a purpose-built chess transformer: data pipelines, self-play, search, and controlled benchmarks.">
+  <meta property="og:type" content="website">
+  <title>Chess AI Research | Sameer Kencham</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0b1220;--panel:#131f31;--ink:#eaf1fa;--muted:#aab9cb;--line:#294057;--mint:#8de0c3;--blue:#b9d0fd}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}
+    body{margin:0;background:radial-gradient(ellipse 56% 31% at 83% 1%,#173c44 0%,transparent 80%),radial-gradient(ellipse 60% 36% at 5% 55%,#151b36 0%,transparent 80%),var(--bg);color:var(--ink);font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+    a{color:inherit;text-decoration:none}a:hover{color:var(--mint)}a:focus-visible{outline:3px solid var(--mint);outline-offset:4px}
+    .wrap{width:min(1100px,calc(100% - 48px));margin:auto}.nav{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;border-bottom:1px solid #ffffff16;flex-wrap:wrap}
+    .brand{font-weight:800;font-size:18px;letter-spacing:-.03em}.brand span{color:var(--mint)}.links{display:flex;gap:21px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+    .eyebrow{font-size:12px;letter-spacing:.17em;text-transform:uppercase;color:var(--mint);font-weight:800}
+    .hero{padding:98px 0 76px;display:grid;grid-template-columns:1.55fr .7fr;align-items:center;gap:44px}
+    h1{font-size:clamp(43px,6vw,76px);letter-spacing:-.062em;line-height:1.07;margin:15px 0 24px}
+    h2{font-size:clamp(28px,3.5vw,41px);letter-spacing:-.045em;line-height:1.15;margin:0 0 16px}
+    h3{font-size:19px;margin:0 0 8px;letter-spacing:-.02em}p{margin:0}.lead{font-size:19px;color:#bfcede;max-width:720px}
+    .chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:27px}.chip{padding:6px 11px;background:#1b3043;border:1px solid #36516a;border-radius:8px;font-size:12px;color:#d6e5f2}
+    .boardwrap{position:relative;max-width:310px;margin:auto;width:100%;aspect-ratio:1;border-radius:19px;padding:13px;background:linear-gradient(140deg,#1d3441,#172238);border:1px solid #3a5967;box-shadow:0 32px 70px #0005;transform:rotate(4deg)}
+    .board{width:100%;height:100%;border-radius:10px;background:repeating-conic-gradient(#b3c9bd 0% 25%,#344e59 0% 50%) 0 0/25% 25%;display:grid;place-items:center}
+    .piece{font-size:clamp(90px,13vw,150px);line-height:1;color:#e9f2f2;text-shadow:0 9px 16px #071521aa}
+    .boardlabel{position:absolute;bottom:24px;left:-16px;background:#102235;border:1px solid #3f6570;border-radius:8px;padding:8px 12px;font-size:11px;color:#a9e4d6;transform:rotate(-4deg)}
+    .section{padding:47px 0 65px}.intro{color:var(--muted);max-width:760px;margin-bottom:27px}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.stat,.card,.notice{background:linear-gradient(145deg,#152338,#101a2b);border:1px solid var(--line);border-radius:16px;padding:25px}
+    .stat strong{font-size:clamp(30px,4.5vw,47px);display:block;line-height:1.15;letter-spacing:-.05em;color:var(--mint);font-variant-numeric:tabular-nums}
+    .stat span{display:block;font-size:13px;margin-top:12px;color:#c1d2e0}.stat small{color:#93a8bc;display:block;font-size:11px;margin-top:9px}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.card p,.notice p{color:var(--muted);font-size:14px}.card .tag{font-size:11px;font-weight:800;color:var(--mint);letter-spacing:.13em;text-transform:uppercase;margin-bottom:9px}
+    .pipeline{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:24px 0}.stage{border:1px solid #395166;background:#14263b;border-radius:12px;padding:18px 13px;text-align:center;position:relative}
+    .stage strong{font-size:13px;display:block}.stage span{font-size:11px;color:var(--muted);display:block;margin-top:8px}
+    .tablewrap{overflow:auto;border:1px solid var(--line);border-radius:16px}table{border-collapse:collapse;min-width:730px;width:100%;font-size:14px}th,td{text-align:left;padding:18px 20px;border-bottom:1px solid #2a3e52;vertical-align:top}th{color:var(--mint);font-size:12px;text-transform:uppercase;letter-spacing:.09em;background:#142338}td{color:#c8d7e6}tr:last-child td{border-bottom:none}td:nth-child(2){font-weight:800;color:#eaf1fa;font-variant-numeric:tabular-nums}
+    .notice{border-color:#41645d;margin-top:18px;background:#142b30}.notice strong{color:#e0f8ec}.cta{padding:28px 0 70px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}.btn{display:inline-flex;padding:12px 19px;background:var(--mint);color:#092023;font-size:14px;border-radius:10px;font-weight:800}.btn:hover{background:#b9f0df;color:#092023}footer{display:flex;justify-content:space-between;gap:10px;border-top:1px solid #263c50;padding:26px 0 42px;font-size:13px;color:#8e9fb1;flex-wrap:wrap}
+    @media(max-width:850px){.hero{grid-template-columns:1fr;padding-top:72px}.boardwrap{max-width:220px;margin:6px auto 24px}.stats{grid-template-columns:1fr}.pipeline{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}}
+    @media(max-width:530px){.wrap{width:calc(100% - 32px)}.hero{padding:60px 0 30px}.section{padding:38px 0}.boardwrap{transform:rotate(0)}.boardlabel{transform:none}.pipeline{grid-template-columns:1fr}.links{gap:12px}.stat,.card{padding:20px}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="nav">
+    <a href="index.html" class="brand">Sameer Kencham<span>.</span></a>
+    <nav class="links" aria-label="Primary"><a href="index.html">Portfolio</a><a href="index.html#experience">Experience</a><a href="https://github.com/sameer-kencham" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">Independent research · Machine learning · Chess</p>
+        <h1 id="page-title">Teaching a model to <span style="color:var(--mint)">play chess.</span></h1>
+        <p class="lead">A personal engineering project exploring whether training, chess-specific representations, and search can improve move selection. I built and evaluated successive model approaches—from Qwen3 fine-tuning experiments to a purpose-built transformer and GPU-backed PUCT search.</p>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Qwen3 / QLoRA</span><span class="chip">Custom transformer</span><span class="chip">PUCT search</span><span class="chip">Stockfish supervision</span><span class="chip">RTX 4090</span></div>
+      </div>
+      <div class="boardwrap" aria-hidden="true"><div class="board"><span class="piece">♞</span></div><span class="boardlabel">Chess × machine learning</span></div>
+    </section>
+    <section class="section" aria-labelledby="approach">
+      <p class="eyebrow">The engineering challenge</p><h2 id="approach">Not just choosing moves. Learning from evidence.</h2>
+      <p class="intro">The goal is a repeatable improvement loop: create chess training positions, learn a policy and position value, improve move selection with search, and compare against frozen baselines. The project combines model engineering, data quality, GPU optimization, and controlled evaluation.</p>
+      <div class="pipeline" role="list" aria-label="High-level chess model research process">
+        <div class="stage" role="listitem"><strong>Positions</strong><span>Board states, history, legal moves</span></div>
+        <div class="stage" role="listitem"><strong>Supervision</strong><span>Stockfish / tablebase signals</span></div>
+        <div class="stage" role="listitem"><strong>Train</strong><span>Policy and W/D/L value targets</span></div>
+        <div class="stage" role="listitem"><strong>Search</strong><span>PUCT improves candidate moves</span></div>
+        <div class="stage" role="listitem"><strong>Evaluate</strong><span>Paired matches and holdouts</span></div>
+      </div>
+    </section>
+    <section class="section" aria-labelledby="evolution">
+      <p class="eyebrow">System evolution</p><h2 id="evolution">From LLM adaptation to a chess-native model.</h2>
+      <div class="grid">
+        <article class="card"><p class="tag">Early experiments</p><h3>Qwen3 and QLoRA</h3><p>Prototyped a chess move-selection agent using Qwen3-8B and parameter-efficient fine-tuning. One recorded run trained on 20,433 examples using Unsloth QLoRA, establishing a baseline for supervised move selection and legal-output evaluation.</p></article>
+        <article class="card"><p class="tag">Custom V6 architecture</p><h3>A specialized transformer</h3><p>Moved toward a roughly 45.3M-parameter chess model with 64-square board tokens, eight-position history, geometry-aware attention, a 4,168-action policy representation, and a win/draw/loss value head.</p></article>
+        <article class="card"><p class="tag">Search and inference</p><h3>PUCT + GPU evaluation</h3><p>Added PUCT-guided search and batched GPU inference for comparing raw model preferences with searched moves. The work includes search-distillation experiments and matched configurations for more meaningful comparisons.</p></article>
+        <article class="card"><p class="tag">Data and experiment discipline</p><h3>Reproducible comparisons</h3><p>Used Stockfish/Syzygy guidance, self-play, versioned model candidates, game-disjoint data partitions, and paired-match scripts. Tracking individual changes matters more than making unsupported claims about absolute playing strength.</p></article>
+      </div>
+    </section>
+    <section class="section" aria-labelledby="metrics">
+      <p class="eyebrow">Recorded local experiments · September–October 2026</p><h2 id="metrics">What the benchmarks showed.</h2>
+      <p class="intro">These are internal research snapshots from specific test configurations, not an external chess rating or independent tournament result.</p>
+      <div class="stats">
+        <div class="stat"><strong>79.25%</strong><span>Match score: PUCT64 with twofold handling versus raw policy</span><small>100 paired-match evaluation</small></div>
+        <div class="stat"><strong>52.5%</strong><span>Match score: V6.3.0 s75 versus V6.2.2 champion candidate</span><small>100 paired-match evaluation</small></div>
+        <div class="stat"><strong>53.5%</strong><span>Search changed raw top-move selection in a search-distillation sample</span><small>535 of 1,000 unique positions, PUCT256</small></div>
+      </div>
+      <div class="tablewrap" style="margin-top:19px">
+        <table>
+          <thead><tr><th>Experiment</th><th>Observed result</th><th>Interpretation</th></tr></thead>
+          <tbody>
+            <tr><td>PUCT64 + twofold handling vs raw</td><td>79.25% score</td><td>Search configuration outperformed its raw-policy comparator under this paired setup.</td></tr>
+            <tr><td>V6.3.0 s75 vs V6.2.2</td><td>52.5% score</td><td>A close local comparison; not proof of a decisive general improvement.</td></tr>
+            <tr><td>V6.3.0 s100 vs V6.2.2</td><td>49.17% score</td><td>Another configuration was approximately even, reinforcing the need for controlled testing.</td></tr>
+            <tr><td>Search-distillation smoke test</td><td>1,000 positions</td><td>Unique, game-disjoint samples with 256 visits per position; search choice differed from raw policy in 535 cases.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="notice"><strong>How to read these figures:</strong> A match score includes draws as half a point; it is not the same as a win rate. Results are from recorded local runs and vary by opponent, search budget, hardware, and test design. No official Elo, Stockfish parity, or state-of-the-art claim is made.</div>
+    </section>
+    <section class="section" aria-labelledby="practice">
+      <p class="eyebrow">Skills demonstrated</p><h2 id="practice">Engineering beyond the application layer.</h2>
+      <div class="grid">
+        <article class="card"><h3>ML experimentation</h3><p>Fine-tuning prototypes, specialized architecture, training data generation, teacher labels, search distillation, and controlled model evaluation.</p></article>
+        <article class="card"><h3>Systems and performance</h3><p>GPU-backed inference on an RTX 4090, batch sizing, search budgets, throughput awareness, and Python experiment tooling.</p></article>
+        <article class="card"><h3>Testing and reliability</h3><p>Repeatable baselines, game-disjoint holdouts, paired matches, versioned experiments, and investigating sources of nondeterminism.</p></article>
+        <article class="card"><h3>Product-minded research</h3><p>Iterating toward a useful chess agent while separating measurable improvement from anecdotal wins and keeping tradeoffs visible.</p></article>
+      </div>
+      <div class="notice"><strong>Project status:</strong> Independent ongoing research. Source code, weights, training data, and an online playable demo are not currently published in this portfolio. The page documents methods and recorded experiments—not an advertised public release.</div>
+    </section>
+    <div class="cta"><div><p class="eyebrow">Software engineering + applied AI</p><h2>Building things, then measuring whether they improve.</h2></div><a class="btn" href="index.html">Back to portfolio ↗</a></div>
+  </main>
+  <footer><span>© <span id="year">2026</span> Sameer Bharadwaj Kencham</span><span>Independent research case study · <a href="https://github.com/sameer-kencham">GitHub profile ↗</a></span></footer>
+</div>
+<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>
