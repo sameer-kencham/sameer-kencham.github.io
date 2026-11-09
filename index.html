@@ -36,6 +36,7 @@
     .fact{border:1px solid #284053;background:#111e2dba;border-radius:13px;padding:16px 18px;min-width:190px;flex:1}
     .fact strong{display:block;font-size:23px;line-height:1.2;letter-spacing:-.03em}
     .fact span{display:block;color:var(--muted);font-size:13px;margin-top:6px}
+    .fact .career-note{font-size:11px;color:#93b4bd;margin-top:8px}
     .section{padding:50px 0 65px}
     .section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:30px}
     h2{font-size:clamp(30px,3.4vw,43px);line-height:1.12;letter-spacing:-.048em;margin:0}
@@ -86,9 +87,9 @@
     <section class="top" aria-labelledby="main-heading">
       <p class="overline">Software Engineer · Enterprise applications · Applied AI research</p>
       <h1 id="main-heading">Engineering software that <span class="shine">works at scale.</span></h1>
-      <p class="lede">I'm <strong>Sameer Bharadwaj Kencham</strong>, a software engineer with 9+ years of experience building and evolving enterprise applications. My work spans Angular and TypeScript interfaces, C#/.NET APIs, Node.js services, and data-driven business workflows. Beyond enterprise software, I research and train chess-playing AI models, exploring transformers, search, GPU inference, and empirical evaluation.</p>
+      <p class="lede">I'm <strong>Sameer Bharadwaj Kencham</strong>, a software engineer with <span id="career-inline">more than nine years</span> of experience building and evolving enterprise applications. My work spans Angular and TypeScript interfaces, C#/.NET APIs, Node.js services, and data-driven business workflows. Beyond enterprise software, I research and train chess-playing AI models, exploring transformers, search, GPU inference, and empirical evaluation.</p>
       <div class="actions"><a class="btn" href="#experience">Explore experience <span aria-hidden="true">↓</span></a><a class="btn secondary" href="https://github.com/sameer-kencham" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a><a class="btn secondary" href="chess-ai.html">Explore my chess AI research ♞</a><a class="btn secondary" href="mailto:sameerkenchem@gmail.com">Contact me ↗</a></div>
-      <div class="facts" aria-label="Career at a glance"><div class="fact"><strong>9+ years</strong><span>Software engineering experience</span></div><div class="fact"><strong>4 industries / teams</strong><span>Pharmacy, distribution, aviation &amp; more</span></div><div class="fact"><strong>UI · API · Data</strong><span>Cross-layer engineering experience</span></div></div>
+      <div class="facts" aria-label="Career at a glance"><div class="fact"><strong id="career-years" aria-live="off">9+ years</strong><span>Software engineering career · since Jan 2017</span><span id="career-asof" class="career-note">Updated from your local date</span></div><div class="fact"><strong>4 industries / teams</strong><span>Pharmacy, distribution, aviation &amp; more</span></div><div class="fact"><strong>UI · API · Data</strong><span>Cross-layer engineering experience</span></div></div>
     </section>
     <section class="section" id="terminal" aria-labelledby="terminal-heading" style="padding-top:8px">
       <div class="section-head"><div><p class="overline">Developer identity · Terminal edition</p><h2 id="terminal-heading">A little code. A little chess.</h2><p class="section-intro">Enterprise software engineering by day; model training, search algorithms, and chess experiments beyond the day job.</p></div></div>
@@ -100,11 +101,11 @@
     <section class="section" id="experience" aria-labelledby="experience-heading">
       <div class="section-head"><div><p class="overline">Professional background</p><h2 id="experience-heading">Experience</h2><p class="section-intro">Building operationally critical systems, modernizing legacy applications, and shipping dependable software across complex organizations.</p></div></div>
       <div class="timeline">
-        <article class="job"><div class="job-top"><div><h3>Software Engineer · ARxIS / ARxISNet</h3><p class="org">Miracle Software Systems · Client: Walgreens</p></div><span class="date">Dec 2023 – Present</span></div><p>Develop enterprise pharmacy inventory workflows spanning cycle count, quarantine, replenishment, putaway, vendor management, and drug catalog operations. Build reusable Angular interfaces, orchestrate RxJS and NgRx state, and integrate with ASP.NET Core APIs and PostgreSQL-backed data services. Support reliability, upgrade compatibility, and production delivery.</p><div class="pills"><span class="pill">Angular</span><span class="pill">TypeScript</span><span class="pill">RxJS / NgRx</span><span class="pill">ASP.NET Core integration</span><span class="pill">PostgreSQL</span><span class="pill">Azure DevOps</span></div></article>
-        <article class="job"><div class="job-top"><div><h3>Software Developer · OMEGA</h3><p class="org">Miracle Software Systems · Client: American Tire Distributors</p></div><span class="date">Sep 2019 – Nov 2023</span></div><p>Developed an internal order-management platform for customer and order operations. Delivered reusable Angular features, coordinated data with NgRx and REST services, worked with Node.js integrations and Oracle/Solr-backed data, and supported micro-frontend architecture and CI/CD workflows.</p><div class="pills"><span class="pill">Angular</span><span class="pill">Node.js</span><span class="pill">NgRx</span><span class="pill">REST APIs</span><span class="pill">Oracle / Solr</span><span class="pill">Jenkins / GitLab</span></div></article>
-        <article class="job"><div class="job-top"><div><h3>Senior UI Developer · Delta.com</h3><p class="org">Delta Air Lines</p></div><span class="date">Jan 2019 – Jul 2019</span></div><p>Modernized customer profile experiences, integrating Angular applications with Adobe Experience Manager, APIs and NgRx. Focused on responsive design, cross-browser behavior, reusable components and automated UI testing.</p><div class="pills"><span class="pill">Angular</span><span class="pill">TypeScript</span><span class="pill">AEM</span><span class="pill">NgRx</span><span class="pill">Jasmine / Karma</span></div></article>
-        <article class="job"><div class="job-top"><div><h3>Senior UI Developer · SNAPP</h3><p class="org">Delta Air Lines</p></div><span class="date">Feb 2018 – Jan 2019</span></div><p>Refactored a legacy operational application used by airport gate and lobby teams for passenger check-in, flight status and baggage workflows. Delivered modular, responsive Angular interfaces with predictable state management.</p><div class="pills"><span class="pill">Angular</span><span class="pill">TypeScript</span><span class="pill">NgRx</span><span class="pill">Jenkins</span></div></article>
-        <article class="job"><div class="job-top"><div><h3>UI Developer</h3><p class="org">Express Global Solutions LLC</p></div><span class="date">Jan 2017 – Jan 2018</span></div><p>Built an isomorphic Angular application with Node.js, Express, Webpack, and NgRx. Worked on REST services, responsive user experiences and scalable state-management patterns.</p><div class="pills"><span class="pill">Angular</span><span class="pill">Node.js / Express</span><span class="pill">REST APIs</span><span class="pill">Webpack</span></div></article>
+        <article class="job"><div class="job-top"><div><h3>Software Engineer · ARxIS / ARxISNet</h3><p class="org">Miracle Software Systems · Client: Walgreens</p></div><span class="date" data-role-start="2023-12" >Dec 2023 – Present</span></div><p>Develop enterprise pharmacy inventory workflows spanning cycle count, quarantine, replenishment, putaway, vendor management, and drug catalog operations. Build reusable Angular interfaces, orchestrate RxJS and NgRx state, and integrate with ASP.NET Core APIs and PostgreSQL-backed data services. Support reliability, upgrade compatibility, and production delivery.</p><div class="pills"><span class="pill">Angular</span><span class="pill">TypeScript</span><span class="pill">RxJS / NgRx</span><span class="pill">ASP.NET Core integration</span><span class="pill">PostgreSQL</span><span class="pill">Azure DevOps</span></div></article>
+        <article class="job"><div class="job-top"><div><h3>Software Developer · OMEGA</h3><p class="org">Miracle Software Systems · Client: American Tire Distributors</p></div><span class="date" data-role-start="2019-09" data-role-end="2023-11">Sep 2019 – Nov 2023</span></div><p>Developed an internal order-management platform for customer and order operations. Delivered reusable Angular features, coordinated data with NgRx and REST services, worked with Node.js integrations and Oracle/Solr-backed data, and supported micro-frontend architecture and CI/CD workflows.</p><div class="pills"><span class="pill">Angular</span><span class="pill">Node.js</span><span class="pill">NgRx</span><span class="pill">REST APIs</span><span class="pill">Oracle / Solr</span><span class="pill">Jenkins / GitLab</span></div></article>
+        <article class="job"><div class="job-top"><div><h3>Senior UI Developer · Delta.com</h3><p class="org">Delta Air Lines</p></div><span class="date" data-role-start="2019-01" data-role-end="2019-07">Jan 2019 – Jul 2019</span></div><p>Modernized customer profile experiences, integrating Angular applications with Adobe Experience Manager, APIs and NgRx. Focused on responsive design, cross-browser behavior, reusable components and automated UI testing.</p><div class="pills"><span class="pill">Angular</span><span class="pill">TypeScript</span><span class="pill">AEM</span><span class="pill">NgRx</span><span class="pill">Jasmine / Karma</span></div></article>
+        <article class="job"><div class="job-top"><div><h3>Senior UI Developer · SNAPP</h3><p class="org">Delta Air Lines</p></div><span class="date" data-role-start="2018-02" data-role-end="2019-01">Feb 2018 – Jan 2019</span></div><p>Refactored a legacy operational application used by airport gate and lobby teams for passenger check-in, flight status and baggage workflows. Delivered modular, responsive Angular interfaces with predictable state management.</p><div class="pills"><span class="pill">Angular</span><span class="pill">TypeScript</span><span class="pill">NgRx</span><span class="pill">Jenkins</span></div></article>
+        <article class="job"><div class="job-top"><div><h3>UI Developer</h3><p class="org">Express Global Solutions LLC</p></div><span class="date" data-role-start="2017-01" data-role-end="2018-01">Jan 2017 – Jan 2018</span></div><p>Built an isomorphic Angular application with Node.js, Express, Webpack, and NgRx. Worked on REST services, responsive user experiences and scalable state-management patterns.</p><div class="pills"><span class="pill">Angular</span><span class="pill">Node.js / Express</span><span class="pill">REST APIs</span><span class="pill">Webpack</span></div></article>
       </div>
     </section>
     <section class="section" id="work" aria-labelledby="work-heading">
@@ -151,6 +152,40 @@
   </main>
   <footer><span>© <span id="year">2026</span> Sameer Bharadwaj Kencham</span><span><a class="footlink" href="#top">Back to top ↑</a> · Built for GitHub Pages</span></footer>
 </div>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+<script>
+(function () {
+  'use strict';
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  document.getElementById('year').textContent = String(today.getFullYear());
+  // The resume specifies month/year, not exact start/end days.
+  // Show completed calendar months, never invented day-level tenure.
+  const monthIndex = (y, m) => y * 12 + m;
+  const formatDuration = (totalMonths, compact) => {
+    const years = Math.floor(Math.max(0, totalMonths) / 12);
+    const months = Math.max(0, totalMonths) % 12;
+    if (compact) return (years ? years + ' yr' + (years !== 1 ? 's' : '') : '') + (years && months ? ', ' : '') + (months ? months + ' mo' + (months !== 1 ? 's' : '') : (!years ? '0 mos' : ''));
+    return (years ? years + ' year' + (years !== 1 ? 's' : '') : '') + (years && months ? ', ' : '') + (months ? months + ' month' + (months !== 1 ? 's' : '') : '');
+  };
+  const monthsSince = monthIndex(today.getFullYear(), today.getMonth()) - monthIndex(2017, 0);
+  const duration = formatDuration(monthsSince, false);
+  document.getElementById('career-years').textContent = formatDuration(monthsSince, true);
+  document.getElementById('career-inline').textContent = 'a career spanning ' + duration;
+  document.getElementById('career-asof').textContent =
+    'As of ' + today.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}) +
+    ' · resume dates recorded by month';
+  document.querySelectorAll('[data-role-start]').forEach((label) => {
+    const [sy, sm] = label.dataset.roleStart.split('-').map(Number);
+    const hasEnd = Boolean(label.dataset.roleEnd);
+    const [ey, em] = hasEnd ? label.dataset.roleEnd.split('-').map(Number) : [today.getFullYear(), today.getMonth() + 1];
+    const start = monthIndex(sy, sm - 1);
+    const end = monthIndex(ey, em - 1);
+    const months = Math.max(0, end - start);
+    const raw = label.textContent;
+    label.textContent = raw + ' · ' + formatDuration(months, true);
+    label.title = 'Approximate calendar span based on the month/year dates in the resume; exact days are not provided.';
+  });
+})();
+</script>
 </body>
 </html>
