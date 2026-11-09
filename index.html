@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Sameer Bharadwaj Kencham is a software engineer with 9+ years of experience building enterprise applications across Angular, .NET, Node.js, APIs, and databases.">
+  <meta name="description" content="Sameer Bharadwaj Kencham is a software engineer with 9+ years of enterprise software experience in Angular, .NET and Node.js, plus independent chess AI model-training research.">
   <meta name="theme-color" content="#0b1220">
   <meta property="og:title" content="Sameer Kencham | Software Engineer">
   <meta property="og:description" content="Software engineer • Enterprise applications • Angular • .NET • Node.js • APIs & databases">
@@ -80,14 +80,14 @@
 <div class="wrap">
   <header class="nav">
     <a href="#top" class="logo" aria-label="Back to top"><span class="mark">SK</span><span>Sameer Kencham<span style="color:var(--accent)">.</span></span></a>
-    <nav class="navlinks" aria-label="Primary navigation"><a href="#experience">Experience</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#about">About</a><a href="https://github.com/sameer-kencham" rel="noopener noreferrer" target="_blank">GitHub ↗</a></nav>
+    <nav class="navlinks" aria-label="Primary navigation"><a href="#experience">Experience</a><a href="#work">Work</a><a href="chess-ai.html">Chess AI</a><a href="#skills">Skills</a><a href="#about">About</a><a href="https://github.com/sameer-kencham" rel="noopener noreferrer" target="_blank">GitHub ↗</a></nav>
   </header>
   <main id="top">
     <section class="top" aria-labelledby="main-heading">
-      <p class="overline">Software Engineer · Enterprise applications</p>
+      <p class="overline">Software Engineer · Enterprise applications · Applied AI research</p>
       <h1 id="main-heading">Engineering software that <span class="shine">works at scale.</span></h1>
-      <p class="lede">I'm <strong>Sameer Bharadwaj Kencham</strong>, a software engineer with 9+ years of experience building and evolving enterprise applications. My work spans Angular and TypeScript interfaces, C#/.NET APIs, Node.js services, and data-driven business workflows.</p>
-      <div class="actions"><a class="btn" href="#experience">Explore experience <span aria-hidden="true">↓</span></a><a class="btn secondary" href="https://github.com/sameer-kencham" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a><a class="btn secondary" href="mailto:sameerkenchem@gmail.com">Contact me ↗</a></div>
+      <p class="lede">I'm <strong>Sameer Bharadwaj Kencham</strong>, a software engineer with 9+ years of experience building and evolving enterprise applications. My work spans Angular and TypeScript interfaces, C#/.NET APIs, Node.js services, and data-driven business workflows. Beyond enterprise software, I research and train chess-playing AI models, exploring transformers, search, GPU inference, and empirical evaluation.</p>
+      <div class="actions"><a class="btn" href="#experience">Explore experience <span aria-hidden="true">↓</span></a><a class="btn secondary" href="https://github.com/sameer-kencham" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a><a class="btn secondary" href="chess-ai.html">Explore my chess AI research ♞</a><a class="btn secondary" href="mailto:sameerkenchem@gmail.com">Contact me ↗</a></div>
       <div class="facts" aria-label="Career at a glance"><div class="fact"><strong>9+ years</strong><span>Software engineering experience</span></div><div class="fact"><strong>4 industries / teams</strong><span>Pharmacy, distribution, aviation &amp; more</span></div><div class="fact"><strong>UI · API · Data</strong><span>Cross-layer engineering experience</span></div></div>
     </section>
     <section class="section" id="experience" aria-labelledby="experience-heading">
@@ -107,6 +107,16 @@
         <article class="card project"><div class="eyelabel">Commerce operations</div><h3>Order management platform</h3><p>Modular applications for order and customer operations, featuring Angular, NgRx, REST services, Node.js integrations, and micro-frontend architecture.</p></article>
         <article class="card project"><div class="eyelabel">Airline applications</div><h3>Customer &amp; airport tools</h3><p>Responsive customer-profile interfaces and airport staff workflows, integrating data, managing complex client-side state, and supporting legacy modernization.</p></article>
       </div>
+      <article class="card project" style="margin-top:19px;border-color:#457466;background:linear-gradient(125deg,#15343d,#121e31);padding:31px">
+        <div class="eyelabel">Featured independent research · AI / Machine learning / Chess</div>
+        <div style="display:flex;justify-content:space-between;align-items:start;gap:25px;flex-wrap:wrap">
+          <div style="flex:1;min-width:240px"><h3 style="font-size:clamp(24px,3vw,32px);margin-bottom:13px">Training a chess-playing AI model ♞</h3>
+          <p style="max-width:760px">An ongoing personal project exploring model training, chess-specific transformers, game-state representations, Stockfish-guided supervision, and PUCT search. I built GPU-backed evaluation workflows and tested successive candidates through paired matches. One local PUCT64 configuration scored 79.25% against its raw-policy baseline; results are experimental, not an official chess rating.</p>
+          <div class="pills" style="margin-bottom:22px"><span class="pill">Python</span><span class="pill">ML training</span><span class="pill">Transformers</span><span class="pill">PUCT</span><span class="pill">RTX 4090</span><span class="pill">Experiment evaluation</span></div>
+          <a class="btn" href="chess-ai.html">Read the chess AI case study ↗</a></div>
+          <div aria-hidden="true" style="font-size:clamp(90px,13vw,160px);line-height:1;color:#a2e6d0;padding:5px 22px">♞</div>
+        </div>
+      </article>
       <div class="note"><strong>Public code:</strong> My GitHub portfolio is being built out with original demos and sanitized engineering write-ups. Employer-owned code, credentials, and private system details remain private.</div>
     </section>
     <section class="section" id="skills" aria-labelledby="skills-heading">
@@ -115,10 +125,11 @@
         <div class="skillset"><h3>Frontend engineering</h3><div class="chips"><span class="chip">Angular</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">RxJS</span><span class="chip">NgRx</span><span class="chip">HTML / CSS / SCSS</span><span class="chip">Angular Material</span><span class="chip">Responsive UI</span></div></div>
         <div class="skillset"><h3>Backend &amp; APIs</h3><div class="chips"><span class="chip">C# / .NET</span><span class="chip">ASP.NET Core</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">REST APIs</span><span class="chip">Async integration</span><span class="chip">Authentication workflows</span></div></div>
         <div class="skillset"><h3>Databases &amp; data</h3><div class="chips"><span class="chip">SQL</span><span class="chip">Oracle / PL/SQL</span><span class="chip">PostgreSQL</span><span class="chip">Database functions</span><span class="chip learning">Growing deeper in PostgreSQL &amp; query optimization</span></div></div>
+        <div class="skillset"><h3>Applied AI &amp; experimental systems</h3><div class="chips"><span class="chip">Python</span><span class="chip">Transformer training</span><span class="chip">Chess AI</span><span class="chip">Qwen3 / QLoRA experiments</span><span class="chip">PUCT search</span><span class="chip">GPU inference</span><span class="chip">Benchmark design</span><span class="chip">Stockfish supervision</span></div></div>
         <div class="skillset"><h3>Delivery &amp; engineering practices</h3><div class="chips"><span class="chip">Git</span><span class="chip">Azure DevOps</span><span class="chip">Jenkins</span><span class="chip">GitLab</span><span class="chip">CI/CD</span><span class="chip">Agile collaboration</span><span class="chip">Testing &amp; debugging</span><span class="chip">Micro-frontends</span></div></div>
       </div>
     </section>
-    <section class="about" id="about" aria-labelledby="about-heading"><div><p class="overline">About me</p><h2 id="about-heading">Practical engineering. Long-term thinking.</h2></div><div><p>I've spent my career translating complicated workflows into applications people can rely on. My strongest foundation is enterprise frontend engineering, and my scope includes backend service integration, C#/.NET work, Node.js, and relational data.</p><p>I'm especially interested in the boundaries between layers: how interfaces handle asynchronous state, how APIs validate and move data, and how database design affects application performance. I'm continuing to deepen my SQL and PostgreSQL skills.</p><p>I hold master's degrees in Computer Engineering (University of Massachusetts Dartmouth) and Information Technology Management (Campbellsville University).</p></div></section>
+    <section class="about" id="about" aria-labelledby="about-heading"><div><p class="overline">About me</p><h2 id="about-heading">Practical engineering. Long-term thinking.</h2></div><div><p>I've spent my career translating complicated workflows into applications people can rely on. My strongest foundation is enterprise frontend engineering, and my scope includes backend service integration, C#/.NET work, Node.js, and relational data.</p><p>I'm especially interested in the boundaries between layers: how interfaces handle asynchronous state, how APIs validate and move data, and how database design affects application performance. I'm continuing to deepen my SQL and PostgreSQL skills.</p><p>Outside my day-to-day enterprise work, I experiment with training chess-playing AI systems. That research combines model design, GPU performance, search algorithms, and careful match-based evaluation. <a class="footlink" href="chess-ai.html">Read the chess AI research case study ↗</a></p><p>I hold master's degrees in Computer Engineering (University of Massachusetts Dartmouth) and Information Technology Management (Campbellsville University).</p></div></section>
     <section class="contact" aria-labelledby="contact-heading"><div><p class="overline">Connect</p><h2 id="contact-heading">Let's build something useful.</h2><p>Interested in software engineering, enterprise application development, or technical collaboration? I'd be glad to connect.</p></div><div class="actions"><a class="btn" href="mailto:sameerkenchem@gmail.com">Email me ↗</a><a class="btn secondary" href="https://github.com/sameer-kencham" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></section>
   </main>
   <footer><span>© <span id="year">2026</span> Sameer Bharadwaj Kencham</span><span><a class="footlink" href="#top">Back to top ↑</a> · Built for GitHub Pages</span></footer>
