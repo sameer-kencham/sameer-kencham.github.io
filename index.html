@@ -89,7 +89,7 @@
       <h1 id="main-heading">Engineering software that <span class="shine">works at scale.</span></h1>
       <p class="lede">I'm <strong>Sameer Bharadwaj Kencham</strong>, a software engineer with <span id="career-inline">more than nine years</span> of experience building and evolving enterprise applications. My work spans Angular and TypeScript interfaces, C#/.NET APIs, Node.js services, and data-driven business workflows. Beyond enterprise software, I research and train chess-playing AI models, exploring transformers, search, GPU inference, and empirical evaluation.</p>
       <div class="actions"><a class="btn" href="#experience">Explore experience <span aria-hidden="true">↓</span></a><a class="btn secondary" href="https://github.com/sameer-kencham" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a><a class="btn secondary" href="chess-ai.html">Explore my chess AI research ♞</a><a class="btn secondary" href="mailto:sameerkenchem@gmail.com">Contact me ↗</a></div>
-      <div class="facts" aria-label="Career at a glance"><div class="fact"><strong id="career-years" aria-live="off">9+ years</strong><span>Software engineering career · since Jan 2017</span><span id="career-asof" class="career-note">Updated from your local date</span></div><div class="fact"><strong>4 industries / teams</strong><span>Pharmacy, distribution, aviation &amp; more</span></div><div class="fact"><strong>UI · API · Data</strong><span>Cross-layer engineering experience</span></div></div>
+      <div class="facts" aria-label="Career at a glance"><div class="fact"><strong id="career-years" aria-live="off">9+ years</strong><span>Software engineering career · estimated start Jan 10, 2017</span><span id="career-asof" class="career-note">Updated from your local date</span></div><div class="fact"><strong>4 industries / teams</strong><span>Pharmacy, distribution, aviation &amp; more</span></div><div class="fact"><strong>UI · API · Data</strong><span>Cross-layer engineering experience</span></div></div>
     </section>
     <section class="section" id="terminal" aria-labelledby="terminal-heading" style="padding-top:8px">
       <div class="section-head"><div><p class="overline">Developer identity · Terminal edition</p><h2 id="terminal-heading">A little code. A little chess.</h2><p class="section-intro">Enterprise software engineering by day; model training, search algorithms, and chess experiments beyond the day job.</p></div></div>
@@ -155,36 +155,54 @@
 <script>
 (function () {
   'use strict';
-  const now = new Date();
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  document.getElementById('year').textContent = String(today.getFullYear());
-  // The resume specifies month/year, not exact start/end days.
-  // Show completed calendar months, never invented day-level tenure.
   const monthIndex = (y, m) => y * 12 + m;
-  const formatDuration = (totalMonths, compact) => {
+  const formatRoleMonths = (totalMonths) => {
     const years = Math.floor(Math.max(0, totalMonths) / 12);
     const months = Math.max(0, totalMonths) % 12;
-    if (compact) return (years ? years + ' yr' + (years !== 1 ? 's' : '') : '') + (years && months ? ', ' : '') + (months ? months + ' mo' + (months !== 1 ? 's' : '') : (!years ? '0 mos' : ''));
-    return (years ? years + ' year' + (years !== 1 ? 's' : '') : '') + (years && months ? ', ' : '') + (months ? months + ' month' + (months !== 1 ? 's' : '') : '');
+    return (years ? years + ' yr' + (years !== 1 ? 's' : '') : '') +
+      (years && months ? ', ' : '') +
+      (months ? months + ' mo' + (months !== 1 ? 's' : '') : (!years ? '0 mos' : ''));
   };
-  const monthsSince = monthIndex(today.getFullYear(), today.getMonth()) - monthIndex(2017, 0);
-  const duration = formatDuration(monthsSince, false);
-  document.getElementById('career-years').textContent = formatDuration(monthsSince, true);
-  document.getElementById('career-inline').textContent = duration;
-  document.getElementById('career-asof').textContent =
-    'As of ' + today.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}) +
-    ' · resume dates recorded by month';
-  document.querySelectorAll('[data-role-start]').forEach((label) => {
-    const [sy, sm] = label.dataset.roleStart.split('-').map(Number);
-    const hasEnd = Boolean(label.dataset.roleEnd);
-    const [ey, em] = hasEnd ? label.dataset.roleEnd.split('-').map(Number) : [today.getFullYear(), today.getMonth() + 1];
-    const start = monthIndex(sy, sm - 1);
-    const end = monthIndex(ey, em - 1);
-    const months = Math.max(0, end - start);
-    const raw = label.textContent;
-    label.textContent = raw + ' · ' + formatDuration(months, true);
-    label.title = 'Approximate calendar span based on the month/year dates in the resume; exact days are not provided.';
-  });
+  const startDate = new Date(2017, 0, 10);
+  const formatYearsMonthsDays = (today, abbreviate) => {
+    if (today < startDate) return abbreviate ? '0 days' : '0 days';
+    // Count complete calendar months, then the remainder in actual days.
+    let monthsTotal = (today.getFullYear() - 2017) * 12 + today.getMonth();
+    if (today.getDate() < 10) monthsTotal -= 1;
+    const anniversary = new Date(2017, monthsTotal, 10);
+    // UTC-only subtraction avoids daylight-saving clock changes.
+    const days = Math.round((
+      Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()) -
+      Date.UTC(anniversary.getFullYear(), anniversary.getMonth(), anniversary.getDate())
+    ) / 86400000);
+    const years = Math.floor(monthsTotal / 12);
+    const months = monthsTotal % 12;
+    if (abbreviate) return years + ' yrs, ' + months + ' mos, ' + days + ' days';
+    return years + ' years, ' + months + ' months, and ' + days + ' days';
+  };
+  const refreshExperience = () => {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    document.getElementById('year').textContent = String(today.getFullYear());
+    const duration = formatYearsMonthsDays(today, false);
+    document.getElementById('career-years').textContent = formatYearsMonthsDays(today, true);
+    document.getElementById('career-inline').textContent = duration;
+    document.getElementById('career-asof').textContent =
+      'As of ' + today.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}) +
+      ' · estimated start: Jan 10, 2017';
+    document.querySelectorAll('[data-role-start]').forEach((label) => {
+      const [sy, sm] = label.dataset.roleStart.split('-').map(Number);
+      const hasEnd = Boolean(label.dataset.roleEnd);
+      const [ey, em] = hasEnd ? label.dataset.roleEnd.split('-').map(Number) : [today.getFullYear(), today.getMonth() + 1];
+      const months = Math.max(0, monthIndex(ey, em - 1) - monthIndex(sy, sm - 1));
+      if (!label.dataset.roleOriginal) label.dataset.roleOriginal = label.textContent;
+      label.textContent = label.dataset.roleOriginal + ' · ' + formatRoleMonths(months);
+      label.title = 'Approximate role duration calculated from the month/year dates in the resume. Exact role start/end days are not available.';
+    });
+  };
+  refreshExperience();
+  // Also updates when the page stays open across a midnight.
+  setInterval(refreshExperience, 60000);
 })();
 </script>
 </body>
